@@ -1,5 +1,5 @@
 const { Router } = require( 'express' );
-const { createProject, getProjects, getProjectById } = require('../controllers/project.controller');
+const { createProject, getProjects, getProjectById, removeProjectById, updateProject } = require('../controllers/project.controller');
 
 const router = Router();
 
@@ -8,6 +8,8 @@ const router = Router();
 router.get( '/', getProjects );
 router.get( '/:id', getProjectById );
 router.post( '/', createProject );
+router.delete( '/:id', removeProjectById );
+router.patch( '/:id', updateProject );
 
 
 module.exports = router;

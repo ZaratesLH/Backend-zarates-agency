@@ -67,7 +67,7 @@ const getProductById = async ( req, res ) => {
         console.error( error );
         res.status( 500 ).json({ ok: false, msg: 'Error al obtener un producto por ID' })
     }
-   
+
 }
 
 const removeProductById = async ( req, res ) => {
@@ -83,7 +83,7 @@ const removeProductById = async ( req, res ) => {
         res.status( 500 ).json({
             ok: false,
             msg: 'Error al eliminar un producto por ID'
-        })
+        });
     }
     
 }

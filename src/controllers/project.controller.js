@@ -1,4 +1,4 @@
-const { registerProject, getAllProjects, getOneProjectById } = require("../services/project.service");
+const { registerProject, getAllProjects, getOneProjectById, removeOneProjectById, updateOneProjectById } = require("../services/project.service");
 
 
 const createProject = async ( req, res ) => {
@@ -45,9 +45,42 @@ const getProjectById = async ( req, res ) => {
 
 }
 
+const removeProjectById = async ( req, res ) => {
+    const project_id = req.params.id;
+
+    try {
+        const data = await removeOneProjectById( project_id );
+
+        res.json({ ok: true, data });
+    } 
+    catch ( error ) {
+        console.log( error );
+        res.json({ ok: false, msg: 'Error al eliminar el producto' });
+    }
+
+}
+
+const updateProject = async ( req, res ) => {
+    const project_id = req.params.id;
+    const inputData = req.body;
+
+    try {
+        const data = await updateOneProjectById( project_id, inputData );
+
+        res.json({ ok: true, data });
+    } 
+    catch ( error ) {
+        console.log( error );
+        res.json({ ok: false, msg: 'Error al actualizar proyecto' });
+    }
+
+}
+
 
 module.exports = {
     createProject,
     getProjects,
-    getProjectById
+    getProjectById,
+    removeProjectById,
+    updateProject
 }
