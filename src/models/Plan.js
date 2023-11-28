@@ -1,5 +1,5 @@
 const { Schema, model } = require( 'mongoose');
-const ServiceModel = require('./Service');
+const { ServiceSchema } = require('./Service');
 
 
 const PlanSchema = new Schema({
@@ -14,7 +14,12 @@ const PlanSchema = new Schema({
     services: {
         type: Array,
         required: true,
-        of: [ ServiceModel ],
+        of: ServiceSchema,
+    },
+    total: {
+        type: Number,
+        required: true,
+        default: 0
     },
     userId: {           // El creador del Plan
         type: String,
@@ -24,7 +29,7 @@ const PlanSchema = new Schema({
     timestamps: true
 });
 
-const PlanModel = model( 'Project', PlanSchema );
+const PlanModel = model( 'Plan', PlanSchema );
 
 
 module.exports = PlanModel;

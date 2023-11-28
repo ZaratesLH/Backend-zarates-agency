@@ -22,6 +22,8 @@ app.use(
 app.use( '/api/categories', require( './routes/category.routes' ) );
 app.use( '/api/projects', require( './routes/project.routes' ) );
 app.use( '/api/services', require( './routes/service.routes' ) );
+app.use( '/api/plans', require( './routes/plan.routes' ) );
+
 
 dbConection();              // Invoca la configuracion de DB, es decir: Pone a funcionar la BD
 createDefaultUsers();       // Invoca la creacion de usuarios por defecto
