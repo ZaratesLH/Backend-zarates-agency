@@ -1,4 +1,4 @@
-const { registerService, getAllServices, getOneServiceById, removeOneServiceById } = require("../services/service.service");
+const { registerService, getAllServices, getOneServiceById, removeOneServiceById, updateOneServiceById } = require("../services/service.service");
 
 
 const createService = async ( req, res ) => {
@@ -64,10 +64,27 @@ const removeServiceById = async ( req, res ) => {
 
 }
 
+const updateService = async ( req, res ) => {
+    const service_id = req.params.id;
+    const inputData = req.body;
+
+    try {
+        const data = await updateOneServiceById( service_id, inputData );
+
+        res.json({ ok: true, data });
+    } 
+    catch ( error ) {
+        console.log( error );
+        res.json({ ok: false, msg: 'Error al actualizar servicio' });
+    }
+
+}
+
 
 module.exports = {
     createService,
     getServices,
     getServiceById,
-    removeServiceById
+    removeServiceById,
+    updateService
 }
