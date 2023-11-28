@@ -1,5 +1,5 @@
 const { Schema, model } = require( 'mongoose');
-const ServiceModel = require('./Services');
+const ServiceModel = require('./Service');
 
 
 const PlanSchema = new Schema({
@@ -16,6 +16,10 @@ const PlanSchema = new Schema({
         required: true,
         of: [ ServiceModel ],
     },
+    userId: {           // El creador del Plan
+        type: String,
+        required: true
+    }
 },{
     timestamps: true
 });
