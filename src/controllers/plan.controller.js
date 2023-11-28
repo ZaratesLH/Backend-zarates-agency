@@ -1,5 +1,6 @@
 const PlanModel = require( '../models/Plan' )
 const ServiceModel = require('../models/Service'); // Asegúrate de tener la ruta correcta al modelo
+const { getExistingServices, registerCreate } = require('../services/plan.service');
 
 
 const createPlan = async ( req, res ) => {
@@ -11,17 +12,18 @@ const createPlan = async ( req, res ) => {
 
     try {
 
-        const existingServices = await ServiceModel.find({ _id: { $in: inputData.services }});
+        const existingServices = await getExistingServices( inputData );
 
         if ( existingServices.length < inputData.services.length ) {
-            return res.status( 400 ).json({ ok: false, msg: 'Al menos uno de los servicios proporcionados no existe.' });
+            return res.status( 400 ).json({ 
+                ok: false, 
+                msg: 'Al menos uno de los servicios proporcionados no existe.' 
+            });
         }
 
         inputData.total = calculateTotalPrice( inputData );
 
-        const newPlan = new PlanModel( inputData );
-
-        const savedPlan = await newPlan.save();
+        const savedPlan = await registerCreate( inputData );
 
         res.json({ ok: true, data: savedPlan });
     }
