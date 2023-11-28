@@ -1,4 +1,4 @@
-const { registerService, getAllServices, getOneServiceById } = require("../services/service.service");
+const { registerService, getAllServices, getOneServiceById, removeOneServiceById } = require("../services/service.service");
 
 
 const createService = async ( req, res ) => {
@@ -49,9 +49,25 @@ const getServiceById = async ( req, res ) => {
 
 }
 
+const removeServiceById = async ( req, res ) => {
+    const service_id = req.params.id;
+
+    try {
+        const data = await removeOneServiceById( service_id );
+
+        res.json({ ok: true, data });
+    } 
+    catch ( error ) {
+        console.log( error );
+        res.json({ ok: false, msg: 'Error al eliminar el servicio' });
+    }
+
+}
+
 
 module.exports = {
     createService,
     getServices,
-    getServiceById
+    getServiceById,
+    removeServiceById
 }
