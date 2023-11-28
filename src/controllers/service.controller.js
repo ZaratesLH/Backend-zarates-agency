@@ -1,4 +1,4 @@
-const { registerService } = require("../services/service.service");
+const { registerService, getAllServices } = require("../services/service.service");
 
 
 const createService = async ( req, res ) => {
@@ -20,7 +20,22 @@ const createService = async ( req, res ) => {
 
 }
 
+const getServices = async ( req, res ) => {
+
+    try {
+        const data = await getAllServices();
+
+        res.json({ ok: true, data });
+    }
+    catch( error ) {
+        console.log( error );
+        res.json({ ok: false, msg: 'Error al obtener la lista de servicios' });
+    }
+
+}
+
 
 module.exports = {
     createService,
+    getServices
 }
