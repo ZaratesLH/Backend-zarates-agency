@@ -13,6 +13,10 @@ const ServiceSchema = new Schema({
     description: {
         type: String,
         required: true,
+    },
+    userId: {           // El creador del servicio
+        type: String,
+        required: true
     }
 },{
     timestamps: true
