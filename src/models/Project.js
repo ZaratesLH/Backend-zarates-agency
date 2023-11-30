@@ -6,9 +6,13 @@ const ProjectSchema = new Schema({
         type: String,
         required: true
     },
+    price: {
+        type: Number,
+        default: 0
+    },
     urlImage: String,
     date: Date,
-    client: {
+    customer: {
         type: String,
         required: true
     },
