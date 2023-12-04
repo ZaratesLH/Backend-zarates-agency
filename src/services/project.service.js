@@ -13,8 +13,12 @@ async function getAllProjects() {
 
 async function getOneProjectById( id ) {
 
-    // return await ProjectModel.find({ _id: id });
-    return await ProjectModel.findById( id );
+    return await ProjectModel.findOne({ _id: id }, {
+        createdAt: 0, 
+        updatedAt: 0,
+        __v: 0
+    });
+    // return await ProjectModel.findById( id );
 }
 
 async function removeOneProjectById( id ) {
