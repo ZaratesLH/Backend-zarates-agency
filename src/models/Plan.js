@@ -1,5 +1,5 @@
 const { Schema, model } = require( 'mongoose');
-const { ServiceSchema } = require('./Service');
+const { PlanFeatureSchema } = require('./PlanFeature');
 
 
 const PlanSchema = new Schema({
@@ -7,14 +7,15 @@ const PlanSchema = new Schema({
         type: String,
         required: true,
     },
-    type: {
+    category: {
         type: String,
         required: true,
+        default: 'non-category'
     },
-    services: {
+    features: {
         type: Array,
         required: true,
-        of: ServiceSchema,
+        of: PlanFeatureSchema,
     },
     total: {
         type: Number,
