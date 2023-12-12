@@ -7,6 +7,7 @@ const router = Router();
 
 // http://localhost:4000/api/services/
 router.get( '/', authUser, getServices );
+router.get( '/all', getServices );
 router.get( '/:id', authUser, getServiceById );
 router.post( '/', authUser, createService );
 router.delete( '/:id', authUser, removeServiceById );

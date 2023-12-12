@@ -14,6 +14,9 @@ const ServiceSchema = new Schema({
         type: String,
         required: true,
     },
+    category: {
+        type: String
+    },
     userId: {           // El creador del servicio
         type: String,
         required: true
